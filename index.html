@@ -1126,38 +1126,30 @@ function buildBoard(){
 
 function buildKeyboard(){
   keyboardEl.innerHTML = "";
+
   const rows = [
-  "QWERTYUIOP".split(""),
-  "ASDFGHJKL".split(""),
-  ["ENTER","Z","X","C","V","B","N","M","DEL"]
-];
- rows.forEach((keys, rowIndex) => {
-  const r = document.createElement("div");
-  r.className = "krow" + (rowIndex === 1 ? " indent" : "");
+    "QWERTYUIOP".split(""),
+    "ASDFGHJKL".split(""),
+    ["ENTER","Z","X","C","V","B","N","M","DEL"]
+  ];
 
-  keys.forEach(k => {
-    const el = document.createElement("div");
-    el.className = "key" + ((k==="ENTER" || k==="DEL") ? " wide" : "");
-    el.textContent = (k==="DEL") ? "⌫" : k;
-    el.dataset.key = k;
-    el.addEventListener("click", () => handleKey(k, true));
-    r.appendChild(el);
-  });
+  rows.forEach((keys, rowIndex) => {
+    const r = document.createElement("div");
+    r.className = "krow" + (rowIndex === 1 ? " indent" : "");
 
-  keyboardEl.appendChild(r);
-});
-
-  // ⌨️ normal keys
-  el.className = "key" + ((k==="ENTER" || k==="DEL") ? " wide" : "");
-  el.textContent = (k==="DEL") ? "⌫" : k;
-  el.dataset.key = k;
-  el.addEventListener("click", () => handleKey(k, true));
-  r.appendChild(el);
-});
+    keys.forEach(k => {
+      const el = document.createElement("div");
+      el.className = "key" + ((k === "ENTER" || k === "DEL") ? " wide" : "");
+      el.textContent = (k === "DEL") ? "⌫" : k;
+      el.dataset.key = k;
+      el.addEventListener("click", () => handleKey(k, true));
+      r.appendChild(el);
+    });
 
     keyboardEl.appendChild(r);
   });
 }
+
 
 function render(){
   const rows = boardEl.querySelectorAll(".row");
