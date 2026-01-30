@@ -384,10 +384,14 @@
   .kbd{
   width:100%;
   max-width:100%;
-  padding-inline:6px;   /* keeps keys off edges on mobile */
   margin:0 auto;
   box-sizing:border-box;
+
+  /* Mobile safety padding */
+  padding-left: max(10px, env(safe-area-inset-left));
+  padding-right: max(10px, env(safe-area-inset-right));
 }
+
 /* Keyboard locked state */
 .kbd.locked {
   opacity: 0.35;
@@ -555,6 +559,14 @@
     .logBox{ height: 260px; }
     .meta{ grid-template-columns: 1fr; }
   }
+  /* Mobile-only keyboard breathing room */
+@media (max-width: 520px){
+  .panel{
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+}
+
 </style>
 </head>
 
