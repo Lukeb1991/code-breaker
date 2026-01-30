@@ -402,19 +402,16 @@
 .kbd.locked .key {
   cursor: default;
 }
-krow{
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
-  gap: 6px;
-  justify-content: center;
-  width: 100%;
+.krow{
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  width:100%;
 }
-
   .key{
-  width: 100%;
+  min-width:38px;
   height: 46px;
-  padding: 0;
+  padding:0 12px;
   border-radius: 14px;
   border:1px solid rgba(53,255,155,.22);
   background: rgba(6,17,12,.60);
@@ -432,9 +429,7 @@ krow{
   flex: 0 0 clamp(10px, 3vw, 20px);
 }
 
-.key.wide{
-  grid-column: span 2;
-}
+.key.wide{ min-width:84px; }
 
   .key:hover{ border-color: rgba(53,255,155,.45); }
   .key:active{ transform: translateY(1px); }
@@ -569,6 +564,12 @@ krow{
   .panel{
     padding-left: 4px;
     padding-right: 4px;
+  }
+}
+@media (max-width: 420px){
+  .kbd{
+    transform: scale(0.94);
+    transform-origin: center;
   }
 }
 
