@@ -24,7 +24,10 @@
   }
 
   *{ box-sizing:border-box; }
-  html,body{ height:100%; }
+  html,body{
+  height:100%;
+  overflow-x:hidden;
+}
   body{
     margin:0;
     color:var(--green);
@@ -170,7 +173,7 @@
     border:1px solid var(--border);
     box-shadow: var(--shadow);
     border-radius:16px;
-    overflow:hidden;
+    overflow:visible;
   }
 
   .panelHeader{
@@ -380,8 +383,10 @@
   }
   .kbd{
   width:100%;
-  max-width:520px;   /* 👈 keeps keyboard sane */
+  max-width:100%;
+  padding-inline:6px;   /* keeps keys off edges on mobile */
   margin:0 auto;
+  box-sizing:border-box;
 }
 /* Keyboard locked state */
 .kbd.locked {
@@ -400,7 +405,7 @@
   flex-wrap:nowrap; /* 🔒 critical */
 }
   .key{
-  flex: 0 0 40px;     /* fixed key width */
+  flex: 0 0 clamp(34px, 9vw, 40px);
   height:46px;
   padding:0;
   border-radius:14px;
@@ -410,20 +415,17 @@
   font-weight:900;
   letter-spacing:1px;
   cursor:pointer;
-  user-select:none;
   display:grid;
   place-items:center;
   font-size:12px;
 }
-  .key.spacer{
-  flex: 0 0 20px;      /* space width */
-  height: 46px;
-  pointer-events: none;
-  border: none;
-  background: none;
+
+ .key.spacer{
+  flex: 0 0 clamp(10px, 3vw, 20px);
 }
-  .key.wide{
-  flex: 0 0 86px;  /* ENTER / DEL */
+
+.key.wide{
+  flex: 0 0 clamp(70px, 18vw, 86px);
 }
   .key:hover{ border-color: rgba(53,255,155,.45); }
   .key:active{ transform: translateY(1px); }
