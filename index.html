@@ -573,7 +573,9 @@
     padding-right: 4px;
   }
 }
-@media (max-width: 420px){
+@media (hover: none) and (pointer: coarse){
+  /* iPhone / touch devices only */
+
   .key.spacer{
     display: none;
   }
@@ -586,6 +588,11 @@
     min-width: 72px;
   }
 }
+.kbd{
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 
 </style>
 </head>
