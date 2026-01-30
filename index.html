@@ -1131,18 +1131,21 @@ function buildKeyboard(){
   "ASDFGHJKL".split(""),
   ["ENTER","Z","X","C","V","B","N","M","DEL"]
 ];
-  rows.forEach(keys => {
-    const r = document.createElement("div");
-r.className = "krow" + (rowIndex === 1 ? " indent" : "");
-    keys.forEach(k => {
-  const el = document.createElement("div");
+ rows.forEach((keys, rowIndex) => {
+  const r = document.createElement("div");
+  r.className = "krow" + (rowIndex === 1 ? " indent" : "");
 
-  // ⬛ spacer keys (invisible, non-interactive)
-  if (k === "SPACER") {
-    el.className = "key spacer";
+  keys.forEach(k => {
+    const el = document.createElement("div");
+    el.className = "key" + ((k==="ENTER" || k==="DEL") ? " wide" : "");
+    el.textContent = (k==="DEL") ? "⌫" : k;
+    el.dataset.key = k;
+    el.addEventListener("click", () => handleKey(k, true));
     r.appendChild(el);
-    return;
-  }
+  });
+
+  keyboardEl.appendChild(r);
+});
 
   // ⌨️ normal keys
   el.className = "key" + ((k==="ENTER" || k==="DEL") ? " wide" : "");
