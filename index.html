@@ -409,34 +409,52 @@
 .kbd.locked .key {
   cursor: default;
 }
-.krow{
-  display:flex;
-  gap:8px;
-  justify-content:center;
-  width:100%;
+/* Keyboard container */
+.kbd{
+  width: 100%;
+  padding: 10px 10px 12px;
+  display: grid;
+  gap: 8px;
 }
-  .key{
-  min-width:38px;
+
+/* Each keyboard row */
+.krow{
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Give the 2nd row a tiny indent (Wordle-style) */
+.krow.indent{
+  padding: 0 18px;
+}
+
+/* Keys */
+.key{
+  flex: 1 1 0;          /* <-- THIS is the magic: distribute, shrink safely */
+  min-width: 0;         /* <-- allows shrinking on Safari */
   height: 46px;
-  padding:0 12px;
+  padding: 0 8px;
   border-radius: 14px;
-  border:1px solid rgba(53,255,155,.22);
+  border: 1px solid rgba(53,255,155,.22);
   background: rgba(6,17,12,.60);
   color: var(--green);
-  font-weight:900;
-  letter-spacing:1px;
-  cursor:pointer;
-  display:grid;
-  place-items:center;
-  font-size:12px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  cursor: pointer;
+  user-select: none;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
 }
 
-
- .key.spacer{
-  flex: 0 0 clamp(10px, 3vw, 20px);
+/* ENTER + DEL slightly wider, but still flexible */
+.key.wide{
+  flex: 1.6 1 0;
 }
 
-.key.wide{ min-width:84px; }
 
   .key:hover{ border-color: rgba(53,255,155,.45); }
   .key:active{ transform: translateY(1px); }
@@ -1115,7 +1133,7 @@ function buildKeyboard(){
 ];
   rows.forEach(keys => {
     const r = document.createElement("div");
-    r.className = "krow";
+r.className = "krow" + (rowIndex === 1 ? " indent" : "");
     keys.forEach(k => {
   const el = document.createElement("div");
 
